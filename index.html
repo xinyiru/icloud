@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/iconfont.css">
+	<link rel="stylesheet" href="css/index.css">
+	<script src="js/angular.js"></script>
+</head>
+<body ng-controller='left'>
+<div class="mask" ng-click="show=false" ng-show="show"></div>
+	<div class="left">
+		<div class="head">
+			<span class="eng">iCloud</span>
+			<span class="chg">提醒事项<span class="san iconfont">&#xe610;</span></span>
+			<button class="jia iconfont" ng-click='btn()'>&#xe605;</button>
+		</div>
+		<div class="box">
+			<ul class="list">
+				<li class="item" ng-repeat='v in data' ng-click='select($index)' ng-style="{background:$index==index?'#2D2D2B':''}">
+					<div class="cir">
+						<div class="seqiu" ng-style='{background:v.color}'></div>
+					</div>
+					<div class="liebiao">
+						<span class="text">{{v.title}}</span>
+						<!-- <span class="shu">{{$index+1}}</span> -->
+						<span class="wifi iconfont">&#xe600;</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="right">
+		<div class="search">
+			<span class="suo iconfont">&#xe601;</span>
+			<input type="text" class="cont" placeholder="搜索所有提醒" ng-model="num">
+			<div class="namebox">
+				<span class="name"><span class="san iconfont">&#xe610;</span></span>
+				<div class="sx"></div>
+				<span class="bang iconfont">&#xe61b;</span>
+			</div>
+		</div>
+
+		<div class="content">
+			<!-- <div class="sousuo">
+				<li ng-repeat="v in data|filter:num ">{{v}}</li>
+								<div class="tab">
+					<span class="new" ng-style="{color:data[index].color}">{{data[index].title}}</span>
+					
+				</div>
+				<div class="wan">已完成：{{(data[index].todo|filter:{done:'true'}).length}} 项</div>
+				<ul class="xxm">
+					<li class="news" ng-repeat="v in data|filter:num">
+						<div class="quan" ng-style="{backgroundColor:data[index].color,borderColor:data[index].color}" ng-click='complete(v)'></div>
+						<span class="text1" contenteditable=true ng-blur="saveItem($event,v)">{{v}}</span>
+					</li>
+				</ul>
+				<div class="wan">未完成：0 项</div>
+				<ul class="xxm">
+					<li class="news" ng-repeat="v in data[index].todo|filter:{done:'false'}" >
+						<div class="quan" ng-style="{borderColor:data[index].color}" ng-click='complete(v)'></div>
+						<span class="text1" contenteditable=true ng-blur="saveItem($event,v)">{{v.t}}</span>
+					</li>
+				</ul>
+				<ul class="xxm">
+					<li class="news" ng-click="add()">新项目...</li>
+				</ul>
+			</div>
+			 -->
+			<div class="rlist">
+				<div class="tab">
+					<span class="new" ng-style="{color:data[index].color}">{{data[index].title}}</span>
+					<button class="tabs" ng-click='setting(v)' ng-style="{color:data[index].color}">选项</button>
+					<div class="hide" ng-show='show'>
+						<div class="kuai">
+							<div class="kuai2">
+								<input type="text" class="title" ng-model='changTitle' ng-style="{color:changColor}" >
+								<div class="yan">列表颜色</div>
+								<div class="hezi">
+									<div class="yanse">
+										<div class="yuan" ng-repeat='v in color'
+										 ng-click="changeC(v)" 
+										 ng-style="{background:v,borderColor:v==changColor?v:''}" ></div>
+										<!-- <div class="yuan"></div>
+										<div class="yuan"></div>
+										<div class="yuan"></div>
+										<div class="yuan"></div>
+										<div class="yuan"></div>
+										<div class="yuan"></div> -->
+										<!-- <div class="yuan"></div> -->
+									</div>
+								</div>
+								<div class="bottom">
+									<button class="del" ng-click="del(v)">删除</button>
+									<dib class="bright">
+										<button class="quxiao" ng-click='show=false'>取消</button>
+										<div class="sx"></div>
+										<button class="wc" ng-click='com(index)' ng-click='show=false' >完成</button>
+									</dib>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="wan">已完成：{{(data[index].todo|filter:{done:'true'}).length}} 项</div>
+				<ul class="xxm">
+					<li class="news" ng-repeat="v in data[index].todo|filter:{done:'true'}" >
+						<div class="quan" ng-style="{backgroundColor:data[index].color,borderColor:data[index].color}" ng-click='complete(v)'></div>
+						<span class="text1" contenteditable=true ng-blur="saveItem($event,v)">{{v.t}}</span>
+					</li>
+				</ul>
+				<div class="wan">未完成：0 项</div>
+				<ul class="xxm">
+					<li class="news" ng-repeat="v in data[index].todo|filter:{done:'false'}" >
+						<div class="quan" ng-style="{borderColor:data[index].color}" ng-click='complete(v)'></div>
+						<span class="text1" contenteditable=true ng-blur="saveItem($event,v)">{{v.t}}</span>
+					</li>
+				</ul>
+				<ul class="xxm">
+					<li class="news" ng-click="add()">新项目...</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script src='js/index.js'></script>
+</body>
+</html>
